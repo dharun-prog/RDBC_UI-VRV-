@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin Dashboard for managing users, roles, and permissions.">
+  <title>RDAC(UI)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <h1> Role Based Access Control System</h1>
+      <nav aria-label="Main Navigation">
+        <ul>
+          <li><a href="index.html" aria-label="Manage Users">Users</a></li>
+          <li><a href="index.html" aria-label="Manage Roles">Roles</a></li>
+          <li><a href="index.html" aria-label="Manage Permissions">Permissions</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Users Section -->
+      <section id="users-section" aria-labelledby="users-heading">
+        <h2 id="users-heading">Manage Users</h2>
+        <button class="primary-btn" onclick="openModal('addUserModal')">Add User</button>
+        <table aria-label="User Table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="userTable">
+            <!-- Users will be dynamically populated -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Roles Section -->
+      <section id="roles-section" aria-labelledby="roles-heading">
+        <h2 id="roles-heading">Manage Roles</h2>
+        <button class="primary-btn" onclick="openModal('addRoleModal')">Add Role</button>
+        <table aria-label="Role Table">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Description</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="roleTable">
+            <!-- Roles will be dynamically populated -->
+          </tbody>
+        </table>
+      </section>
+
+      
+      <section id="permissions-section" aria-labelledby="permissions-heading">
+        <h2 id="permissions-heading">Manage Permissions</h2>
+        <div id="permissionsMatrix" aria-label="Permissions Matrix">
+          
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modals -->
+  <div id="addUserModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-labelledby="addUserModalTitle" aria-describedby="addUserModalDesc">
+      <h3 id="addUserModalTitle"></h3>
+
+            <h2>Add New User</h2>
+            <form id="addUserForm">
+                <div class="form-group">
+                    <label for="userName">Name:</label>
+                    <input type="text" id="userName" placeholder="Enter user's name" required>
+                    <small id="userNameError" class="error-message"></small>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email:</label>
+                    <input type="email" id="userEmail" placeholder="Enter user's email" required>
+                    <small id="userEmailError" class="error-message"></small>
+                </div>
+                <div class="form-group">
+                    <label for="userRole">Role:</label>
+                    <select id="userRole" required>
+                        <option value="" disabled selected>Select a role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Editor">Editor</option>
+                        <option value="Viewer">Viewer</option>
+                        <option value="Manager">manager</option>
+                        <option value="Software developer">Software developer</option>
+                        <option value="Web developer">web developer</option>
+                        <option value="Quality Analyst">Quality Analyst</option>
+                        <option value="Testing">Testing</option>
+                    </select>
+                    <small id="userRoleError" class="error-message"></small>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="primary-btn">Add User</button>
+                    <button type="button" class="secondary-btn" onclick="closeModal('addUserModal')">Cancel</button>
+                </div>
+            </form>
+        
+    
+    
+    </div>
+  </div>
+
+  <div id="addRoleModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-labelledby="addRoleModalTitle" aria-describedby="addRoleModalDesc">
+      <h3 id="addRoleModalTitle">Add Role</h3>
+      <form id="addRoleForm">
+        <label for="roleName">Role Name:</label>
+        <input type="text" id="roleName" placeholder="Enter role name" required><br>
+        <label for="roleDescription">Description:</label>
+        <textarea id="roleDescription" placeholder="Enter role description" required></textarea><br>
+        <div class="modal-actions">
+          <button type="submit" class="primary-btn">Add Role</button>
+          <button type="button" class="secondary-btn" onclick="closeModal('addRoleModal')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
